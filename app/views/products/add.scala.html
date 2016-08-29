@@ -1,0 +1,22 @@
+@(msg: String, form: Form[Product])(implicit messages: Messages)
+
+@main("add a about") {
+  @helper.form(action = routes.ProductController.create) {
+    @(helper.inputText(
+      field = form("title"),
+      '_label -> "作品名"
+    ))
+    @(helper.inputText(
+      field = form("company"),
+      '_label -> "制作会社"
+    ))
+    @(helper.inputDate(
+      field = form("publishDate"),
+      '_label -> "公開日時"
+    ))
+
+    <button type="submit">登録</button>
+  }
+
+  <a href="@routes.ProductController.index()">一覧に戻る</a>
+}

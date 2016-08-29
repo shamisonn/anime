@@ -1,0 +1,19 @@
+@(msg: String, p: Product)
+
+  @main("about product") {
+    <h1>About</h1>
+
+    <p>作品名: 「@p.title」</p>
+    <p>制作会社: 「@p.company」</p>
+    <p>公開日時: 「@p.publishDate.toString("yyyy年 MM月 dd日")」</p>
+    <p>最終更新日: 「@p.lastUpdated.map(_.toString("yyyy年 MM月 dd日"))」</p>
+
+    <form method="GET" action="@routes.ProductController.edit(p.id.get)">
+      <button type="submit">更新</button>
+    </form>
+    <form method="POST" action="@routes.ProductController.delete(p.id.get)">
+      <button type="submit">削除</button>
+    </form>
+
+    <a href="@routes.ProductController.index()">一覧に戻る</a>
+  }

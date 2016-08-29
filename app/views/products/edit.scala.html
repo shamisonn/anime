@@ -1,0 +1,22 @@
+@(msg: String, form: Form[Product])(implicit messages: Messages)
+
+@main("edit a about") {
+  @helper.form(action = routes.ProductController.update(form.get.id.get)) {
+    @(helper.inputText(
+      field = form("title"),
+      '_label -> "作品名"
+    ))
+    @(helper.inputText(
+      field = form("company"),
+      '_label -> "制作会社"
+    ))
+    @(helper.inputDate(
+      field = form("publishDate"),
+      '_label -> "公開日時"
+    ))
+
+    <button type="submit">更新</button>
+  }
+
+  <a href="@routes.ProductController.index()">一覧に戻る</a>
+}

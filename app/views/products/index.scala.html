@@ -1,0 +1,39 @@
+@* 全productを表示し, [個別ページ], [edit], [delete] を用意 *@
+@(msg: String, ls: List[Product])
+
+@main(" | products") {
+  <h1>Products Index</h1>
+  <p>Message: @msg</p>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>作品名</th>
+      <th></th>
+      <th></th>
+    </tr>
+    @for(p <- ls) {
+      <tr>
+        <td>
+          <p>@p.id.get</p>
+        </td>
+        <td>
+          <a href="@routes.ProductController.getById(p.id.get)">@p.title</a>
+        </td>
+        <td>
+          <form method="GET" action="@routes.ProductController.edit(p.id.get)">
+            <button type="submit">更新</button>
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="@routes.ProductController.delete(p.id.get)">
+            <button type="submit">削除</button>
+          </form>
+        </td>
+      </tr>
+    }
+  </table>
+
+  <h3><a href="@routes.ProductController.add()">Create product</a></h3>
+
+}
