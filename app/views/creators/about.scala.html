@@ -7,13 +7,15 @@
     <p>担当: 「@c.role」</p>
 
     <h1>参加作品:</h1>
-
+  @if(c.id.isDefined) {
     <form method="GET" action="@routes.CreatorController.edit(c.id.get)">
       <button type="submit">更新</button>
     </form>
     <form method="POST" action="@routes.CreatorController.delete(c.id.get)">
       <button type="submit">削除</button>
     </form>
-
+  } else {
+    <p>...</p>
+  }
     <a href="@routes.CreatorController.index()">一覧に戻る</a>
   }
