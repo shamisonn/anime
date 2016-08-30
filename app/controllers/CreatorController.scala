@@ -27,17 +27,17 @@ class CreatorController @Inject()(val messagesApi: MessagesApi, dao: CreatorDAO)
     )(Creator.apply)(Creator.unapply)
   )
 
-  // GET /products
+  // GET /creators
   def index = Action.async { implicit req =>
     dao.all.map(ls => Ok(views.html.creators.index("", ls)))
   }
 
-  // GET /products/new
+  // GET /creators/new
   def add = Action {
     Ok(views.html.creators.add("about page", form))
   }
 
-  // POST /products
+  // POST /creators
   def create = Action.async { implicit req =>
     form.bindFromRequest.fold(
       error => {
@@ -51,7 +51,7 @@ class CreatorController @Inject()(val messagesApi: MessagesApi, dao: CreatorDAO)
     )
   }
 
-  // GET /products/{id}
+  // GET /creators/{id}
   def getById(id: Long) = Action.async {
     dao.byId(id).flatMap {
       case Some(cre) =>
@@ -61,7 +61,7 @@ class CreatorController @Inject()(val messagesApi: MessagesApi, dao: CreatorDAO)
     }
   }
 
-  // GET /products/{id}/edit
+  // GET /creators/{id}/edit
   def edit(id: Long) = Action.async {
     dao.byId(id).flatMap {
       case Some(cre) =>
@@ -72,7 +72,7 @@ class CreatorController @Inject()(val messagesApi: MessagesApi, dao: CreatorDAO)
 
   }
 
-  // POST /products/{id}
+  // POST /creators/{id}
   def update(id: Long) = Action.async { implicit req =>
     form.bindFromRequest.fold(
       error => {
@@ -86,7 +86,7 @@ class CreatorController @Inject()(val messagesApi: MessagesApi, dao: CreatorDAO)
     )
   }
 
-  // POST /products/{id}/delete
+  // POST /creators/{id}/delete
   def delete(id: Long) = Action.async {
     dao.byId(id).flatMap {
       case Some(pro) =>
