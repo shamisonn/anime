@@ -5,6 +5,7 @@
 # Home page
 GET         /                           controllers.Application.index
 
+
 # Products Index
 GET         /products                   controllers.ProductController.index
 
@@ -21,6 +22,25 @@ POST        /products/:id               controllers.ProductController.update(id:
 
 ## Delete Product
 POST        /products/:id/delete        controllers.ProductController.delete(id:Long)
+
+
+# Creators Index
+GET         /creators                   controllers.CreatorController.index
+
+## Add Creator
+GET         /creators/new               controllers.CreatorController.add
+POST        /creators                   controllers.CreatorController.create
+
+## Creator Profile
+GET         /creators/:id               controllers.CreatorController.getById(id:Long)
+
+## Edit Creator
+GET         /creators/:id/edit          controllers.CreatorController.edit(id:Long)
+POST        /creators/:id               controllers.CreatorController.update(id:Long)
+
+## Delete Creator
+POST        /creators/:id/delete        controllers.CreatorController.delete(id:Long)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.at(path="/public", file)
