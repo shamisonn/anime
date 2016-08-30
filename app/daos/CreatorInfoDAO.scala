@@ -42,9 +42,9 @@ class CreatorInfoDAO @Inject()(private val dbConfigProvider: DatabaseConfigProvi
     dbConfig.db.run(creatorsInfo += c).map(_ => ())
   }
 
-  def update(creator: CreatorInfo): Future[Unit] = {
-    val c = creator.copy(lastUpdated = Option(new DateTime()))
-    dbConfig.db.run(creatorsInfo.filter(_.id === c.id).update(c)).map(_ => ())
+  def update(id: Long, creator: CreatorInfo): Future[Unit] = {
+    val c = creator.copy(id = Some(id), lastUpdated = Option(new DateTime()))
+    dbConfig.db.run(creatorsInfo.filter(_.id === id).update(c)).map(_ => ())
   }
 
   def delete(id: Long): Future[Unit] =
