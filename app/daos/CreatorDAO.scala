@@ -46,8 +46,8 @@ class CreatorDAO @Inject()(private val dbConfigProvider: DatabaseConfigProvider)
   def insert(creator: Creator): Future[Unit] =
     dbConfig.db.run(creators += creator).map(_ => ())
 
-  def update(creator: Creator): Future[Unit] =
-    dbConfig.db.run(creators.filter(_.id === creator.id).update(creator))
+  def update(id: Long, creator: Creator): Future[Unit] =
+    dbConfig.db.run(creators.filter(_.id === id).update(creator))
       .map(_ => ())
 
   def delete(id: Long): Future[Unit] =
