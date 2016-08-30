@@ -1,0 +1,43 @@
+@* 全productを表示し, [個別ページ], [edit], [delete] を用意 *@
+@(msg: String, ls: List[Creator])
+
+@main(" | creators") {
+  <h1>Creators Index</h1>
+  <p>Message: @msg</p>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>担当</th>
+      <th></th>
+      <th></th>
+    </tr>
+    @for(c <- ls) {
+      <tr>
+        <td>
+          <p>@c.id.get</p>
+        </td>
+        <td>
+          <a href="@routes.CreatorController.getById(c.id.get)">@c.name</a>
+        </td>
+        <td>
+          <p>@c.role</p>
+        </td>
+        <td>
+          <form method="GET" action="@routes.CreatorController.edit(c.id.get)">
+            <button type="submit">更新</button>
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="@routes.CreatorController.delete(c.id.get)">
+            <button type="submit">削除</button>
+          </form>
+        </td>
+      </tr>
+    }
+  </table>
+
+  <h3><a href="@routes.CreatorController.add()">Create creator</a></h3>
+
+}

@@ -1,0 +1,19 @@
+@(msg: String, c: Creator)
+
+  @main("about creator") {
+    <h1>About</h1>
+
+    <p>名前: 「@c.name」</p>
+    <p>担当: 「@c.role」</p>
+
+    <h1>参加作品:</h1>
+
+    <form method="GET" action="@routes.CreatorController.edit(c.id.get)">
+      <button type="submit">更新</button>
+    </form>
+    <form method="POST" action="@routes.CreatorController.delete(c.id.get)">
+      <button type="submit">削除</button>
+    </form>
+
+    <a href="@routes.CreatorController.index()">一覧に戻る</a>
+  }
