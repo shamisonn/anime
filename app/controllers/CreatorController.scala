@@ -80,7 +80,7 @@ class CreatorController @Inject()(val messagesApi: MessagesApi, dao: CreatorDAO)
       },
       creator => {
         dao.update(id, creator).flatMap(cnt =>
-          Future(Ok(views.html.products.about("", creator)))
+          Future(Ok(views.html.creators.about("", creator)))
         )
       }
     )
