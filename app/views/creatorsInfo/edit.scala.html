@@ -1,0 +1,18 @@
+@(msg: String, form: Form[CreatorInfo])(implicit messages: Messages)
+
+@main("edit a about") {
+  @helper.form(action = routes.CreatorInfoController.update(form.get.id.get)) {
+    @(helper.inputText(
+      field = form("name"),
+      '_label -> "名前"
+    ))
+    @(helper.inputDate(
+      field = form("birthDay"),
+      '_label -> "誕生日"
+    ))
+
+    <button type="submit">更新</button>
+  }
+
+  <a href="@routes.CreatorInfoController.index()">一覧に戻る</a>
+}

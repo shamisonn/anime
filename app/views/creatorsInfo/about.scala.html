@@ -1,0 +1,24 @@
+@(msg: String, ci: CreatorInfo)
+
+@main("about creator") {
+  <h1>About</h1>
+
+  <p>名前: 「@ci.name」</p>
+  <p>誕生日: 「@ci.birthDay.toString("yyyy年 MM月 dd日")」</p>
+  <p>最終更新日: 「@ci.lastUpdated.map(_.toString("yyyy年 MM月 dd日"))」</p>
+
+  @if(ci.id.isDefined) {
+    <form method="GET" action="@routes.CreatorInfoController.edit(ci.id.get)">
+      <button type="submit">更新</button>
+    </form>
+    <form method="POST" action="@routes.CreatorInfoController.delete(ci.id.get)">
+      <button type="submit">削除</button>
+    </form>
+  } else {
+    <p>...</p>
+  }
+
+
+
+  <a href="@routes.CreatorInfoController.index()">一覧に戻る</a>
+}

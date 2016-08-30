@@ -1,0 +1,43 @@
+@* 全productを表示し, [個別ページ], [edit], [delete] を用意 *@
+@(msg: String, ls: List[CreatorInfo])
+
+@main(" | creators") {
+  <h1>Creators Index</h1>
+  <p>Message: @msg</p>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>誕生日</th>
+      <th></th>
+      <th></th>
+    </tr>
+    @for(ci <- ls) {
+      <tr>
+        <td>
+          <p>@ci.id.get</p>
+        </td>
+        <td>
+          <a href="@routes.CreatorInfoController.getById(ci.id.get)">@ci.name</a>
+        </td>
+        <td>
+          <p>@ci.birthDay.toString("yyyy年 MM月 dd日")</p>
+        </td>
+        <td>
+          <form method="GET" action="@routes.CreatorInfoController.edit(ci.id.get)">
+            <button type="submit">更新</button>
+          </form>
+        </td>
+        <td>
+          <form method="POST" action="@routes.CreatorInfoController.delete(ci.id.get)">
+            <button type="submit">削除</button>
+          </form>
+        </td>
+      </tr>
+    }
+  </table>
+
+  <h3><a href="@routes.CreatorInfoController.add()">Create creators info</a></h3>
+
+}
