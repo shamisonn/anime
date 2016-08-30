@@ -24,6 +24,24 @@ POST        /products/:id               controllers.ProductController.update(id:
 POST        /products/:id/delete        controllers.ProductController.delete(id:Long)
 
 
+# CreatorsInfo Index
+GET         /creators_info                   controllers.CreatorInfoController.index
+
+## Add CreatorsInfo
+GET         /creators_info/new               controllers.CreatorInfoController.add
+POST        /creators_info                   controllers.CreatorInfoController.create
+
+## CreatorsInfo Profile
+GET         /creators_info/:id               controllers.CreatorInfoController.getById(id:Long)
+
+## Edit CreatorsInfo
+GET         /creators_info/:id/edit          controllers.CreatorInfoController.edit(id:Long)
+POST        /creators_info/:id               controllers.CreatorInfoController.update(id:Long)
+
+## Delete CreatorsInfo
+POST        /creators_info/:id/delete        controllers.CreatorInfoController.delete(id:Long)
+
+
 # Creators Index
 GET         /creators                   controllers.CreatorController.index
 
